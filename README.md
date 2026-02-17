@@ -121,6 +121,7 @@ The final app will include multiple pages, reusable components, routing, and dif
 - [x] Implement `POST /api/extract` with mock extractor service.
 - [x] Implement skills endpoints: `GET /api/skills`, `POST /api/skills`, `PATCH /api/skills/:id`.
 - [x] Implement extraction logs endpoint: `GET /api/extractions`.
+- [x] UI polish aligned with Phase 4: updated Workflow progress status, improved action/focus states, and refined Results empty-state CTA.
 
 ### Phase 5: Database and persistence (SQLite)
 - [ ] Define SQLite schema for skills and extraction logs.
