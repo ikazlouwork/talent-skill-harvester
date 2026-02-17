@@ -12,6 +12,7 @@
 - Phase 3: Completed
 - Phase 4: Completed (health, extract, skills CRUD-lite, extraction logs)
 - Phase 5: Completed (SQLite persistence + repository pattern + migrations)
+- Phase 6: Completed (admin dashboard + skills catalog + logs review + validation/error handling)
 
 ## Prompt History
 
@@ -113,6 +114,57 @@
 - **Accepted / changed:** Accepted as minimal operational fix and docs update.
 - **Why:** Enables predictable one-command startup from any folder.
 
+### Step 11 — Phase 6 implementation (Admin area)
+- **Goal:** Complete Phase 6 scope without expanding UX beyond checklist requirements.
+- **Context provided:** README Phase 6 checklist and existing placeholders for `/admin`, `/admin/skills`, `/admin/logs`.
+- **Prompt used:** Implement admin workflows using existing API endpoints and current design primitives.
+- **Result summary:** Implemented:
+	- functional admin dashboard with navigation shortcuts and phase summary
+	- `/admin/skills` list/create/edit workflows with API integration (`GET/POST/PATCH`)
+	- `/admin/logs` extraction history review (`GET /api/extractions`)
+	- frontend validation, loading, empty, success, and error states for admin actions
+	- supporting admin web types and minimal style extensions
+- **Accepted / changed:** Accepted full Phase 6 implementation and marked checklist items complete in README.
+- **Why:** Closed remaining functional gap between API readiness and admin UI delivery.
+
+### Step 12 — Workflow progress correctness fix
+- **Goal:** Align Home `Workflow progress` visualization with actual phase status.
+- **Context provided:** UI showed stale progress due to hardcoded values.
+- **Prompt used:** Replace hardcoded progress counters with data-driven phase list and derived percentages.
+- **Result summary:**
+	- migrated Home progress widget to single-source phase list
+	- updated status to include completed Phase 6 and `Next` for Phase 7
+	- ring percentage now derives from list rather than static constants
+- **Accepted / changed:** Accepted as targeted correctness fix with no new UX scope.
+- **Why:** Prevents drift between README plan status and UI progress widget.
+
+### Step 13 — Startup performance optimization
+- **Goal:** Reduce perceived heavy startup when running local dev environment.
+- **Context provided:** API startup felt slow during `npm run dev`; suspicion pointed to backend startup mode.
+- **Prompt used:** Measure API startup latency across run modes and switch default scripts to fastest safe option.
+- **Result summary:**
+	- measured startup-to-health latency (`dotnet run --no-build` significantly faster than `dotnet watch`)
+	- changed default scripts:
+		- `dev` -> API via `dotnet run --no-build`
+		- `dev:api` -> fast run mode
+		- added `dev:api:watch` for file-watch workflow when needed
+	- updated README script documentation accordingly
+- **Accepted / changed:** Accepted performance-first default with optional watch mode preserved.
+- **Why:** Improves day-to-day developer feedback loop while retaining watch-based option.
+
+### Step 14 — Branching and commit hygiene
+- **Goal:** Keep delivery traceable with focused commits on dedicated feature branch.
+- **Context provided:** Requests to create a new branch and commit changes incrementally.
+- **Prompt used:** Create branch from `main`, commit Phase 6 work, commit workflow fix, commit startup perf update.
+- **Result summary:**
+	- branch created: `feature/new-from-main-2026-02-17`
+	- commits created:
+		- `feat(web): implement phase 6 admin area workflows`
+		- `fix(web): sync workflow progress with phase checklist`
+		- `perf(dev): speed up api startup by default`
+- **Accepted / changed:** Accepted incremental commit strategy with separated concerns.
+- **Why:** Improves reviewability, rollback safety, and PR clarity.
+
 ## Accepted/Changed and Why
 - What was accepted directly:
 	- Generated API/controller scaffolding, route wiring, and baseline validation patterns.
@@ -122,12 +174,15 @@
 	- Full Phase 5 persistence implementation with EF Core + SQLite + repository pattern.
 	- Home layout refinements and workflow progress ring visualization.
 	- Branch/push/PR delivery workflow for incremental review.
+	- Full Phase 6 admin workflow implementation with API-backed UI states.
+	- Startup performance script refactor with explicit fast/default vs watch modes.
 - What was refactored manually:
 	- Kept implementation in-memory only for Phase 4 to avoid mixing with Phase 5 DB scope.
 	- Excluded `apps/api/tests/**` from API project compile items to prevent duplicate/invalid compilation during solution test run.
 - What was refactored manually (new):
 	- Converted controller/store interactions to async service abstraction to preserve API contracts during persistence swap.
 	- Refined Home grid into independent columns so card heights do not affect adjacent column layout.
+	- Reworked Home workflow progress from hardcoded counters to derived phase metadata.
 - What was rejected and why:
 	- Extra UI/admin features beyond scope were deferred to Phase 6.
 
@@ -143,3 +198,4 @@
 	- Keep each prompt scoped to one phase and include acceptance criteria in bullet form.
 	- Maintain at least one small `ui:` commit in each PR for steady UX improvements.
 	- When using monorepo scripts, document `--prefix` startup fallback early to avoid cwd-related run issues.
+	- Use timed startup measurements before optimizing; script-level changes can remove most friction without codebase-wide refactors.
