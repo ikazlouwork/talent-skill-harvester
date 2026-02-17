@@ -4,6 +4,11 @@
 Talent Skill Harvester is a planned Skill Extraction Tool assignment project with a UI + API architecture.
 The final app will include multiple pages, reusable components, routing, and different layouts (for example, main and admin areas).
 
+## Current stack
+- Frontend: React + Vite + TypeScript
+- Backend: .NET 10 Minimal API
+- Shared package: TypeScript types/utilities (`packages/shared`)
+
 ## Scope for v1
 - Build UI pages for core user flows (upload/input, review, admin, and settings).
 - Implement routing across several pages and layout groups.
@@ -50,13 +55,48 @@ The final app will include multiple pages, reusable components, routing, and dif
 	- `GITHUB_TOKEN`
 - This keeps secrets out of source control and allows switching endpoints per environment.
 
+## Local start
+### Prerequisites
+- Node.js 20+ and npm
+- .NET SDK 10+
+
+### Quick start (PowerShell)
+1. (Optional) Create local env file for frontend overrides:
+	- `Copy-Item .env.example .env`
+2. Install dependencies:
+	- `npm install`
+3. Start API + Web in parallel:
+	- `npm run dev`
+
+### Useful scripts
+- `npm run dev` — starts API and Web together
+- `npm run dev:api` — starts only API (.NET)
+- `npm run dev:web` — starts only Web
+- `npm run typecheck` — runs TypeScript checks for Web + Shared
+- `npm run build` — builds API (.NET) + Web + Shared
+- `npm run test` — runs API tests (.NET) + placeholder tests for Web + Shared
+
+### Local endpoints
+- Web app: `http://localhost:5173`
+- API health: `http://localhost:4000/api/health`
+
+### Smoke check
+- Open `http://localhost:5173`
+- Home page calls backend healthcheck automatically
+- Expected result on page: healthcheck status `ok`
+
+### Backend launch profile
+- API dev profile is defined in `apps/api/Properties/launchSettings.json`
+- Uses fixed URL: `http://localhost:4000`
+- Uses environment: `ASPNETCORE_ENVIRONMENT=Development`
+
 ## Plan (checklist)
 
 ### Phase 1: Project bootstrap
-- [ ] Choose stack and initialize app structure (UI + API + shared config).
-- [ ] Add base scripts for dev/build/test.
-- [ ] Configure environment variables and update `mcp.json`/runtime config.
-- [ ] Add initial README run instructions for local start.
+- [x] Choose stack and initialize app structure (UI + API + shared config).
+- [x] Add base scripts for dev/build/test.
+- [x] Configure environment variables and update `mcp.json`/runtime config.
+- [x] Add initial README run instructions for local start.
 
 ### Phase 2: Frontend skeleton and routing
 - [ ] Create app shell and global navigation.
@@ -71,7 +111,7 @@ The final app will include multiple pages, reusable components, routing, and dif
 - [ ] Add loading/error/empty states for extraction UX.
 
 ### Phase 4: API implementation
-- [ ] Implement `GET /api/health`.
+- [x] Implement `GET /api/health`.
 - [ ] Implement `POST /api/extract` with mock extractor service.
 - [ ] Implement skills endpoints: `GET /api/skills`, `POST /api/skills`, `PATCH /api/skills/:id`.
 - [ ] Implement extraction logs endpoint: `GET /api/extractions`.
