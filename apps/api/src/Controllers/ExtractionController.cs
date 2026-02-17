@@ -1,11 +1,12 @@
 using Microsoft.AspNetCore.Mvc;
 using TalentSkillHarvester.Api.Contracts;
+using TalentSkillHarvester.Api.Storage;
 
 namespace TalentSkillHarvester.Api.Controllers;
 
 [ApiController]
 [Route("api")]
-public sealed class ExtractionController : ControllerBase
+public sealed class ExtractionController(InMemoryApiStore store) : ControllerBase
 {
     private static readonly (string Name, string Category)[] KnownSkills =
     [
@@ -69,6 +70,11 @@ public sealed class ExtractionController : ControllerBase
             Summary: $"Extracted {extractedSkills.Count} skill(s) from the provided CV and IFU.",
             Skills: extractedSkills,
             Warnings: warnings);
+
+        store.AddExtractionLog(new CreateExtractionLogEntry(
+            response.Summary,
+            response.Skills.Count,
+            response.Warnings.Count));
 
         return Ok(response);
     }

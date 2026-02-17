@@ -118,6 +118,12 @@ body {
 
 .home-grid .card:nth-child(1) {
   grid-column: span 7;
+  align-self: start;
+}
+
+.home-grid .card:nth-child(1) .card-content {
+  display: flex;
+  flex-direction: column;
 }
 
 .home-grid .card:nth-child(2) {
@@ -149,7 +155,7 @@ body {
   display: flex;
   flex-wrap: wrap;
   gap: 0.6rem;
-  margin-top: 0.3rem;
+  margin-top: auto;
 }
 
 .home-action-link {
