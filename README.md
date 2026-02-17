@@ -99,10 +99,10 @@ The final app will include multiple pages, reusable components, routing, and dif
 - [x] Add initial README run instructions for local start.
 
 ### Phase 2: Frontend skeleton and routing
-- [ ] Create app shell and global navigation.
-- [ ] Add routes for `/`, `/extract`, `/results`, `/admin`, `/admin/skills`, `/admin/logs`.
-- [ ] Implement two layouts: main layout and admin layout.
-- [ ] Create reusable UI components (forms, tables/lists, cards, status blocks).
+- [x] Create app shell and global navigation.
+- [x] Add routes for `/`, `/extract`, `/results`, `/admin`, `/admin/skills`, `/admin/logs`.
+- [x] Implement two layouts: main layout and admin layout.
+- [x] Create reusable UI components (forms, tables/lists, cards, status blocks).
 
 ### Phase 3: Extraction flow (core user scenario)
 - [ ] Build `/extract` page with CV + IFU input form.
