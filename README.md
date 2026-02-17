@@ -50,9 +50,46 @@ The final app will include multiple pages, reusable components, routing, and dif
 	- `GITHUB_TOKEN`
 - This keeps secrets out of source control and allows switching endpoints per environment.
 
-## Run plan
-- TODO: Choose final stack bootstrap command and initialize app runtime.
-- TODO: Add frontend run command documentation.
-- TODO: Add backend/API run command documentation.
-- TODO: Add database migration/seed instructions.
-- TODO: Add CI checks and local validation flow.
+## Plan (checklist)
+
+### Phase 1: Project bootstrap
+- [ ] Choose stack and initialize app structure (UI + API + shared config).
+- [ ] Add base scripts for dev/build/test.
+- [ ] Configure environment variables and update `mcp.json`/runtime config.
+- [ ] Add initial README run instructions for local start.
+
+### Phase 2: Frontend skeleton and routing
+- [ ] Create app shell and global navigation.
+- [ ] Add routes for `/`, `/extract`, `/results`, `/admin`, `/admin/skills`, `/admin/logs`.
+- [ ] Implement two layouts: main layout and admin layout.
+- [ ] Create reusable UI components (forms, tables/lists, cards, status blocks).
+
+### Phase 3: Extraction flow (core user scenario)
+- [ ] Build `/extract` page with CV + IFU input form.
+- [ ] Implement submit flow to `POST /api/extract`.
+- [ ] Build `/results` page to show structured extracted skills.
+- [ ] Add loading/error/empty states for extraction UX.
+
+### Phase 4: API implementation
+- [ ] Implement `GET /api/health`.
+- [ ] Implement `POST /api/extract` with mock extractor service.
+- [ ] Implement skills endpoints: `GET /api/skills`, `POST /api/skills`, `PATCH /api/skills/:id`.
+- [ ] Implement extraction logs endpoint: `GET /api/extractions`.
+
+### Phase 5: Database and persistence (SQLite)
+- [ ] Define SQLite schema for skills and extraction logs.
+- [ ] Add migrations and optional seed data.
+- [ ] Connect API endpoints to persistence layer.
+- [ ] Verify basic CRUD and extraction history retention.
+
+### Phase 6: Admin area
+- [ ] Build `/admin` dashboard shell with navigation to admin sections.
+- [ ] Build `/admin/skills` page for catalog management (list/create/edit).
+- [ ] Build `/admin/logs` page for extraction/request logs review.
+- [ ] Add simple validation and error handling in admin workflows.
+
+### Phase 7: Quality and delivery
+- [ ] Add tests for core API and critical UI flow.
+- [ ] Run local validation: lint/build/tests.
+- [ ] Finalize documentation for run, DB setup, and architecture decisions.
+- [ ] Confirm AI-generated code share target (>= 90%) and log key prompts in `docs/prompt-log.md`.
