@@ -109,14 +109,14 @@ The final app will include multiple pages, reusable components, routing, and dif
 - [x] Created placeholder pages for all planned routes and kept home API healthcheck visible.
 
 ### Phase 3: Extraction flow (core user scenario)
-- [ ] Build `/extract` page with CV + IFU input form.
-- [ ] Implement submit flow to `POST /api/extract`.
-- [ ] Build `/results` page to show structured extracted skills.
-- [ ] Add loading/error/empty states for extraction UX.
+- [x] Build `/extract` page with CV + IFU input form.
+- [x] Implement submit flow to `POST /api/extract`.
+- [x] Build `/results` page to show structured extracted skills.
+- [x] Add loading/error/empty states for extraction UX.
 
 ### Phase 4: API implementation
 - [x] Implement `GET /api/health`.
-- [ ] Implement `POST /api/extract` with mock extractor service.
+- [x] Implement `POST /api/extract` with mock extractor service.
 - [ ] Implement skills endpoints: `GET /api/skills`, `POST /api/skills`, `PATCH /api/skills/:id`.
 - [ ] Implement extraction logs endpoint: `GET /api/extractions`.
 

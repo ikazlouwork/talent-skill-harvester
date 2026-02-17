@@ -118,6 +118,54 @@ body {
   margin: 0;
 }
 
+.extract-form {
+  display: grid;
+  gap: 0.65rem;
+}
+
+.field-label {
+  font-size: 0.95rem;
+  font-weight: 600;
+}
+
+.field-textarea {
+  width: 100%;
+  resize: vertical;
+  border: 1px solid;
+  border-radius: 0.65rem;
+  padding: 0.6rem 0.7rem;
+  font: inherit;
+}
+
+.primary-button {
+  width: fit-content;
+  border: 1px solid;
+  border-radius: 0.65rem;
+  padding: 0.5rem 0.9rem;
+  font: inherit;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.primary-button:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+.skills-list,
+.warnings-list {
+  margin: 0;
+  padding-left: 1.1rem;
+}
+
+.skills-item {
+  margin-bottom: 0.6rem;
+}
+
+.skills-item p {
+  margin: 0.15rem 0;
+}
+
 @media (max-width: 640px) {
   .app-shell {
     width: min(1080px, 100% - 1.5rem);
