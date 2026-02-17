@@ -68,6 +68,11 @@ The final app will include multiple pages, reusable components, routing, and dif
 3. Start API + Web in parallel:
 	- `npm run dev`
 
+### Simplified start (from any folder)
+- If your current working directory is not the repository root, run:
+	- `npm --prefix c:\work\talent-skill-harvester run dev`
+- This avoids `ENOENT: Could not read package.json` errors when launching from `C:\work`.
+
 ### Useful scripts
 - `npm run dev` — starts API and Web together
 - `npm run dev:api` — starts only API (.NET)
