@@ -37,9 +37,18 @@ The final app will include multiple pages, reusable components, routing, and dif
 5. Log every major prompt, output summary, and acceptance/refactor rationale in docs.
 6. Track generated vs manually edited areas to keep AI-generated code share at or above 90%.
 
-## MCP (TBD)
-- MCP configuration file is initialized in `mcp.json`.
-- Server definitions are currently empty and will be added when concrete tooling is selected.
+## MCP setup
+- MCP configuration is defined in `mcp.json` with three server entries:
+	- `context7`
+	- `microsoftlearn`
+	- `github`
+- The config uses environment variables for secure setup:
+	- `MCP_CONTEXT7_URL`
+	- `MCP_CONTEXT7_API_KEY`
+	- `MCP_MICROSOFTLEARN_URL`
+	- `MCP_GITHUB_URL`
+	- `GITHUB_TOKEN`
+- This keeps secrets out of source control and allows switching endpoints per environment.
 
 ## Run plan
 - TODO: Choose final stack bootstrap command and initialize app runtime.

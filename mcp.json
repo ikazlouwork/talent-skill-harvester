@@ -1,3 +1,26 @@
 {
-  "servers": []
+  "servers": [
+    {
+      "name": "context7",
+      "type": "http",
+      "url": "${env:MCP_CONTEXT7_URL}",
+      "headers": {
+        "Authorization": "Bearer ${env:MCP_CONTEXT7_API_KEY}"
+      }
+    },
+    {
+      "name": "microsoftlearn",
+      "type": "http",
+      "url": "${env:MCP_MICROSOFTLEARN_URL}",
+      "headers": {}
+    },
+    {
+      "name": "github",
+      "type": "http",
+      "url": "${env:MCP_GITHUB_URL}",
+      "headers": {
+        "Authorization": "Bearer ${env:GITHUB_TOKEN}"
+      }
+    }
+  ]
 }
