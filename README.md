@@ -74,8 +74,9 @@ The final app will include multiple pages, reusable components, routing, and dif
 - This avoids `ENOENT: Could not read package.json` errors when launching from `C:\work`.
 
 ### Useful scripts
-- `npm run dev` — starts API and Web together
-- `npm run dev:api` — starts only API (.NET)
+- `npm run dev` — starts API and Web together (fast API start via `dotnet run --no-build`)
+- `npm run dev:api` — starts only API (.NET, fast start via `--no-build`)
+- `npm run dev:api:watch` — starts only API with auto-rebuild/restart on changes
 - `npm run dev:web` — starts only Web
 - `npm run typecheck` — runs TypeScript checks for Web + Shared
 - `npm run build` — builds API (.NET) + Web + Shared
