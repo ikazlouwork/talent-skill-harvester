@@ -50,10 +50,11 @@ export function HomePage() {
     : null;
 
   return (
-    <>
+    <div className="page-grid">
       <Card title="Project status">
         <p>Phase 2 frontend skeleton is active.</p>
         <p>Configured API base URL: {webConfig.apiBaseUrl}</p>
+        <p>Use the navigation above to open extract, results, and admin sections.</p>
       </Card>
       <Card title="API healthcheck">
         <StatusBlock
@@ -62,6 +63,6 @@ export function HomePage() {
           successText={successText}
         />
       </Card>
-    </>
+    </div>
   );
 }
