@@ -8,25 +8,25 @@ namespace TalentSkillHarvester.Api.Tests;
 public sealed class ExtractionControllerTests
 {
     [Fact]
-    public void Extract_ReturnsBadRequest_WhenInputIsMissing()
+    public async Task Extract_ReturnsBadRequest_WhenInputIsMissing()
     {
         var store = new InMemoryApiStore();
         var controller = new ExtractionController(store);
 
-        var result = controller.Extract(new ExtractRequest("", " "));
+        var result = await controller.Extract(new ExtractRequest("", " "), CancellationToken.None);
 
         Assert.IsType<BadRequestObjectResult>(result.Result);
     }
 
     [Fact]
-    public void Extract_ReturnsOk_AndWritesExtractionLog()
+    public async Task Extract_ReturnsOk_AndWritesExtractionLog()
     {
         var store = new InMemoryApiStore();
         var controller = new ExtractionController(store);
         var cv = "Experienced C# and .NET engineer with Azure and SQL background.";
         var ifu = "Role requires React and TypeScript skills with CI/CD knowledge.";
 
-        var result = controller.Extract(new ExtractRequest(cv, ifu));
+        var result = await controller.Extract(new ExtractRequest(cv, ifu), CancellationToken.None);
 
         var ok = Assert.IsType<OkObjectResult>(result.Result);
         var payload = Assert.IsType<ExtractResponse>(ok.Value);
@@ -34,7 +34,7 @@ public sealed class ExtractionControllerTests
         Assert.NotEmpty(payload.Skills);
         Assert.Contains(payload.Skills, skill => skill.Name == "C#");
 
-        var logs = store.GetExtractionLogs();
+        var logs = await store.GetExtractionLogsAsync(CancellationToken.None);
         Assert.Single(logs);
         Assert.Equal(payload.Skills.Count, logs[0].SkillCount);
         Assert.Equal(payload.Warnings.Count, logs[0].WarningCount);

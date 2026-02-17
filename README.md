@@ -68,6 +68,11 @@ The final app will include multiple pages, reusable components, routing, and dif
 3. Start API + Web in parallel:
 	- `npm run dev`
 
+### Simplified start (from any folder)
+- If your current working directory is not the repository root, run:
+	- `npm --prefix c:\work\talent-skill-harvester run dev`
+- This avoids `ENOENT: Could not read package.json` errors when launching from `C:\work`.
+
 ### Useful scripts
 - `npm run dev` — starts API and Web together
 - `npm run dev:api` — starts only API (.NET)
@@ -89,6 +94,14 @@ The final app will include multiple pages, reusable components, routing, and dif
 - API dev profile is defined in `apps/api/Properties/launchSettings.json`
 - Uses fixed URL: `http://localhost:4000`
 - Uses environment: `ASPNETCORE_ENVIRONMENT=Development`
+
+### SQLite persistence
+- API uses SQLite with EF Core migrations.
+- Default DB file path: `apps/api/App_Data/talent-skill-harvester.db`
+- Override DB file location with env var: `SQLITE_DB_PATH`
+- Apply/create migrations manually (optional):
+	- `dotnet ef migrations add <MigrationName> --project apps/api/TalentSkillHarvester.Api.csproj --startup-project apps/api/TalentSkillHarvester.Api.csproj --output-dir src/Persistence/Migrations`
+	- `dotnet ef database update --project apps/api/TalentSkillHarvester.Api.csproj --startup-project apps/api/TalentSkillHarvester.Api.csproj`
 
 ## Plan (checklist)
 
@@ -121,13 +134,19 @@ The final app will include multiple pages, reusable components, routing, and dif
 - [x] Implement `POST /api/extract` with mock extractor service.
 - [x] Implement skills endpoints: `GET /api/skills`, `POST /api/skills`, `PATCH /api/skills/:id`.
 - [x] Implement extraction logs endpoint: `GET /api/extractions`.
-- [x] UI polish aligned with Phase 4: updated Workflow progress status, improved action/focus states, and refined Results empty-state CTA.
+- [x] UI polish: updated Workflow progress status, improved action/focus states, and refined Results empty-state CTA.
 
 ### Phase 5: Database and persistence (SQLite)
-- [ ] Define SQLite schema for skills and extraction logs.
-- [ ] Add migrations and optional seed data.
-- [ ] Connect API endpoints to persistence layer.
-- [ ] Verify basic CRUD and extraction history retention.
+- [x] Define SQLite schema for skills and extraction logs.
+- [x] Add migrations and optional seed data.
+- [x] Connect API endpoints to persistence layer.
+- [x] Verify basic CRUD and extraction history retention.
+
+Completed in this phase:
+- Added SQLite persistence with EF Core (`AppDbContext`, entities, and initial migration).
+- Implemented repository-based data access for skills and extraction logs.
+- Replaced in-memory API storage with persistence-backed store/service wiring.
+- Added DB seeding for initial skills and validated extraction log retention after API restart.
 
 ### Phase 6: Admin area
 - [ ] Build `/admin` dashboard shell with navigation to admin sections.

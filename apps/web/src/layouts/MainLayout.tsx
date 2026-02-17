@@ -9,7 +9,6 @@ export function MainLayout() {
           <h1 className="workspace-title">Talent Skill Harvester</h1>
           <p className="workspace-subtitle">Main workspace</p>
         </div>
-        <p className="workspace-tag">Phase 2</p>
       </header>
       <Navigation />
       <section className="content">

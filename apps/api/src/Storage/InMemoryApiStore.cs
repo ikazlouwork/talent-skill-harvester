@@ -2,7 +2,7 @@ using TalentSkillHarvester.Api.Contracts;
 
 namespace TalentSkillHarvester.Api.Storage;
 
-public sealed class InMemoryApiStore
+public sealed class InMemoryApiStore : IApiStore
 {
     private readonly List<SkillItem> skills =
     [
@@ -16,21 +16,25 @@ public sealed class InMemoryApiStore
     private int nextSkillId = 4;
     private int nextExtractionId = 1;
 
-    public IReadOnlyList<SkillItem> GetSkills()
+    public Task<IReadOnlyList<SkillItem>> GetSkillsAsync(CancellationToken cancellationToken = default)
     {
-        return skills
+        var result = skills
             .OrderBy(skill => skill.Name)
             .ToList();
+
+        return Task.FromResult<IReadOnlyList<SkillItem>>(result);
     }
 
-    public bool IsSkillNameTaken(string name, int? excludeId = null)
+    public Task<bool> IsSkillNameTakenAsync(string name, int? excludeId = null, CancellationToken cancellationToken = default)
     {
-        return skills.Any(skill =>
+        var result = skills.Any(skill =>
             (excludeId is null || skill.Id != excludeId.Value) &&
             string.Equals(skill.Name, name, StringComparison.OrdinalIgnoreCase));
+
+        return Task.FromResult(result);
     }
 
-    public SkillItem AddSkill(CreateSkillRequest request)
+    public Task<SkillItem> AddSkillAsync(CreateSkillRequest request, CancellationToken cancellationToken = default)
     {
         var newSkill = new SkillItem(
             nextSkillId++,
@@ -41,16 +45,16 @@ public sealed class InMemoryApiStore
 
         skills.Add(newSkill);
 
-        return newSkill;
+        return Task.FromResult(newSkill);
     }
 
-    public SkillItem? UpdateSkill(int id, UpdateSkillRequest request)
+    public Task<SkillItem?> UpdateSkillAsync(int id, UpdateSkillRequest request, CancellationToken cancellationToken = default)
     {
         var existingSkill = skills.FirstOrDefault(skill => skill.Id == id);
 
         if (existingSkill is null)
         {
-            return null;
+            return Task.FromResult<SkillItem?>(null);
         }
 
         var updatedSkill = existingSkill with
@@ -64,10 +68,10 @@ public sealed class InMemoryApiStore
         var index = skills.FindIndex(skill => skill.Id == id);
         skills[index] = updatedSkill;
 
-        return updatedSkill;
+        return Task.FromResult<SkillItem?>(updatedSkill);
     }
 
-    public void AddExtractionLog(CreateExtractionLogEntry entry)
+    public Task AddExtractionLogAsync(CreateExtractionLogEntry entry, CancellationToken cancellationToken = default)
     {
         extractionLogs.Add(new ExtractionLogItem(
             nextExtractionId++,
@@ -75,12 +79,16 @@ public sealed class InMemoryApiStore
             entry.SkillCount,
             entry.WarningCount,
             entry.Summary));
+
+        return Task.CompletedTask;
     }
 
-    public IReadOnlyList<ExtractionLogItem> GetExtractionLogs()
+    public Task<IReadOnlyList<ExtractionLogItem>> GetExtractionLogsAsync(CancellationToken cancellationToken = default)
     {
-        return extractionLogs
+        var result = extractionLogs
             .OrderByDescending(log => log.CreatedAtUtc)
             .ToList();
+
+        return Task.FromResult<IReadOnlyList<ExtractionLogItem>>(result);
     }
 }

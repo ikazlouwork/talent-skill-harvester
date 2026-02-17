@@ -11,7 +11,7 @@
 - Phase 2: Completed
 - Phase 3: Completed
 - Phase 4: Completed (health, extract, skills CRUD-lite, extraction logs)
-- Phase 5: In progress (planned: SQLite persistence)
+- Phase 5: Completed (SQLite persistence + repository pattern + migrations)
 
 ## Prompt History
 
@@ -71,14 +71,63 @@
 - **Accepted / changed:** Accepted test coverage for core controller behaviors (validation, success, conflict/not-found).
 - **Why:** Establishes baseline backend quality gates before Phase 5 persistence work.
 
+### Step 7 — Phase 5 implementation (SQLite + repository pattern)
+- **Goal:** Complete persistence phase with SQLite while keeping API contracts stable.
+- **Context provided:** Phase 5 checklist in README and requirement to use repository pattern.
+- **Prompt used:** Implement EF Core SQLite persistence, repositories, migrations, service abstraction, and wire controllers through DI.
+- **Result summary:** Added:
+	- `AppDbContext`, entities, migrations, seed logic
+	- repository interfaces + SQLite repository implementations
+	- shared `IApiStore`/service abstraction for controllers
+	- async controller/action updates and test adjustments
+	- retention smoke check (logs persisted across API restart)
+- **Accepted / changed:** Accepted full persistence refactor; replaced in-memory runtime path while preserving endpoint DTOs.
+- **Why:** Closed all declared Phase 5 outcomes without expanding API scope.
+
+### Step 8 — Home page UX updates (workflow section)
+- **Goal:** Improve dashboard clarity on Home page without adding extra pages.
+- **Context provided:** Requests to remove workspace tag, align cards, split columns, and visualize progress.
+- **Prompt used:** Refactor home layout into independent columns and add circular workflow progress ring.
+- **Result summary:** Implemented:
+	- removed `workspace-tag` from main/admin layouts
+	- independent Home columns (`Talent Skill Harvester` + `API healthcheck` in one column, `Workflow progress` in the other)
+	- progress ring above workflow title showing completed phases out of 10
+- **Accepted / changed:** Accepted all requested layout and visualization adjustments; kept styles within existing design system variables.
+- **Why:** Better visual progress tracking and cleaner content grouping.
+
+### Step 9 — Delivery ops (branch, commits, push, PR)
+- **Goal:** Prepare and publish incremental work safely.
+- **Context provided:** Request for branch creation, focused commits, push, and PR creation.
+- **Prompt used:** Create feature branch, commit in logical chunks, push branch, open PR to `main`.
+- **Result summary:** Published branch `feature/phase5-sqlite-repository` and created PR: `https://github.com/ikazlouwork/talent-skill-harvester/pull/6`.
+- **Accepted / changed:** Kept commit history split by concern (API persistence, UI layout, workflow ring, startup reliability).
+- **Why:** Improves reviewability and traceability.
+
+### Step 10 — Dev startup reliability
+- **Goal:** Reduce friction when starting app locally.
+- **Context provided:** Frequent `npm run dev` failures from non-repo cwd and `dotnet watch` sensitivity to test artifacts.
+- **Prompt used:** Stabilize API csproj watch inputs and document cwd-independent startup command.
+- **Result summary:**
+	- excluded `apps/api/tests/**` from watched/content items in API csproj
+	- documented `npm --prefix c:\work\talent-skill-harvester run dev` in README
+- **Accepted / changed:** Accepted as minimal operational fix and docs update.
+- **Why:** Enables predictable one-command startup from any folder.
+
 ## Accepted/Changed and Why
 - What was accepted directly:
 	- Generated API/controller scaffolding, route wiring, and baseline validation patterns.
 	- Small UI state polish changes with separate `ui:` commits.
 	- xUnit project scaffold and controller-focused unit test structure.
+- What was accepted directly (new):
+	- Full Phase 5 persistence implementation with EF Core + SQLite + repository pattern.
+	- Home layout refinements and workflow progress ring visualization.
+	- Branch/push/PR delivery workflow for incremental review.
 - What was refactored manually:
 	- Kept implementation in-memory only for Phase 4 to avoid mixing with Phase 5 DB scope.
 	- Excluded `apps/api/tests/**` from API project compile items to prevent duplicate/invalid compilation during solution test run.
+- What was refactored manually (new):
+	- Converted controller/store interactions to async service abstraction to preserve API contracts during persistence swap.
+	- Refined Home grid into independent columns so card heights do not affect adjacent column layout.
 - What was rejected and why:
 	- Extra UI/admin features beyond scope were deferred to Phase 6.
 
@@ -93,3 +142,4 @@
 - Recommendations for future assignments:
 	- Keep each prompt scoped to one phase and include acceptance criteria in bullet form.
 	- Maintain at least one small `ui:` commit in each PR for steady UX improvements.
+	- When using monorepo scripts, document `--prefix` startup fallback early to avoid cwd-related run issues.

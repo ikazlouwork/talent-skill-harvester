@@ -9,7 +9,6 @@ export function AdminLayout() {
           <h1 className="workspace-title">Talent Skill Harvester</h1>
           <p className="workspace-subtitle">Admin workspace</p>
         </div>
-        <p className="workspace-tag">Admin area</p>
       </header>
       <Navigation />
       <section className="content">

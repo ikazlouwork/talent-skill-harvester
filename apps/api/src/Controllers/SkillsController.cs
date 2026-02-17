@@ -6,32 +6,32 @@ namespace TalentSkillHarvester.Api.Controllers;
 
 [ApiController]
 [Route("api/skills")]
-public sealed class SkillsController(InMemoryApiStore store) : ControllerBase
+public sealed class SkillsController(IApiStore store) : ControllerBase
 {
     [HttpGet]
     [ProducesResponseType(typeof(IReadOnlyList<SkillItem>), StatusCodes.Status200OK)]
-    public ActionResult<IReadOnlyList<SkillItem>> GetSkills()
+    public async Task<ActionResult<IReadOnlyList<SkillItem>>> GetSkills(CancellationToken cancellationToken)
     {
-        return Ok(store.GetSkills());
+        return Ok(await store.GetSkillsAsync(cancellationToken));
     }
 
     [HttpPost]
     [ProducesResponseType(typeof(SkillItem), StatusCodes.Status201Created)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     [ProducesResponseType(StatusCodes.Status409Conflict)]
-    public ActionResult<SkillItem> CreateSkill([FromBody] CreateSkillRequest request)
+    public async Task<ActionResult<SkillItem>> CreateSkill([FromBody] CreateSkillRequest request, CancellationToken cancellationToken)
     {
         if (string.IsNullOrWhiteSpace(request.Name) || string.IsNullOrWhiteSpace(request.Category))
         {
             return BadRequest(new { error = "Name and Category are required." });
         }
 
-        if (store.IsSkillNameTaken(request.Name))
+        if (await store.IsSkillNameTakenAsync(request.Name, cancellationToken: cancellationToken))
         {
             return Conflict(new { error = "Skill with this name already exists." });
         }
 
-        var createdSkill = store.AddSkill(request);
+        var createdSkill = await store.AddSkillAsync(request, cancellationToken);
 
         return Created($"/api/skills/{createdSkill.Id}", createdSkill);
     }
@@ -41,7 +41,7 @@ public sealed class SkillsController(InMemoryApiStore store) : ControllerBase
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
     [ProducesResponseType(StatusCodes.Status409Conflict)]
-    public ActionResult<SkillItem> PatchSkill(int id, [FromBody] UpdateSkillRequest request)
+    public async Task<ActionResult<SkillItem>> PatchSkill(int id, [FromBody] UpdateSkillRequest request, CancellationToken cancellationToken)
     {
         var noChangesProvided = request.Name is null && request.Category is null && request.IsActive is null;
 
@@ -57,7 +57,7 @@ public sealed class SkillsController(InMemoryApiStore store) : ControllerBase
                 return BadRequest(new { error = "Name cannot be empty." });
             }
 
-            if (store.IsSkillNameTaken(request.Name, id))
+            if (await store.IsSkillNameTakenAsync(request.Name, id, cancellationToken))
             {
                 return Conflict(new { error = "Skill with this name already exists." });
             }
@@ -68,7 +68,7 @@ public sealed class SkillsController(InMemoryApiStore store) : ControllerBase
             return BadRequest(new { error = "Category cannot be empty." });
         }
 
-        var updatedSkill = store.UpdateSkill(id, request);
+        var updatedSkill = await store.UpdateSkillAsync(id, request, cancellationToken);
 
         if (updatedSkill is null)
         {

@@ -6,7 +6,7 @@ namespace TalentSkillHarvester.Api.Controllers;
 
 [ApiController]
 [Route("api")]
-public sealed class ExtractionController(InMemoryApiStore store) : ControllerBase
+public sealed class ExtractionController(IApiStore store) : ControllerBase
 {
     private static readonly (string Name, string Category)[] KnownSkills =
     [
@@ -26,7 +26,7 @@ public sealed class ExtractionController(InMemoryApiStore store) : ControllerBas
     [HttpPost("extract")]
     [ProducesResponseType(typeof(ExtractResponse), StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
-    public ActionResult<ExtractResponse> Extract([FromBody] ExtractRequest request)
+    public async Task<ActionResult<ExtractResponse>> Extract([FromBody] ExtractRequest request, CancellationToken cancellationToken)
     {
         if (string.IsNullOrWhiteSpace(request.CvText) || string.IsNullOrWhiteSpace(request.IfuText))
         {
@@ -71,10 +71,10 @@ public sealed class ExtractionController(InMemoryApiStore store) : ControllerBas
             Skills: extractedSkills,
             Warnings: warnings);
 
-        store.AddExtractionLog(new CreateExtractionLogEntry(
+        await store.AddExtractionLogAsync(new CreateExtractionLogEntry(
             response.Summary,
             response.Skills.Count,
-            response.Warnings.Count));
+            response.Warnings.Count), cancellationToken);
 
         return Ok(response);
     }
