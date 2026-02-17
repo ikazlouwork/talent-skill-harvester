@@ -113,6 +113,8 @@ The final app will include multiple pages, reusable components, routing, and dif
 - [x] Implement submit flow to `POST /api/extract`.
 - [x] Build `/results` page to show structured extracted skills.
 - [x] Add loading/error/empty states for extraction UX.
+- [x] UI polish: improved Home page visual dashboard and quick actions (`202a1f7`).
+- [x] UX polish: healthcheck status colors updated (success = green, loading = yellow, error = red) (`b0c8cc9`).
 
 ### Phase 4: API implementation
 - [x] Implement `GET /api/health`.
