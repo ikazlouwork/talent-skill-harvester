@@ -103,6 +103,10 @@ The final app will include multiple pages, reusable components, routing, and dif
 - [x] Add routes for `/`, `/extract`, `/results`, `/admin`, `/admin/skills`, `/admin/logs`.
 - [x] Implement two layouts: main layout and admin layout.
 - [x] Create reusable UI components (forms, tables/lists, cards, status blocks).
+- [x] Added client routing with `react-router-dom` and full route map for main + admin sections.
+- [x] Implemented `MainLayout` and `AdminLayout` with shared global navigation.
+- [x] Added reusable UI primitives: `Card` and `StatusBlock`.
+- [x] Created placeholder pages for all planned routes and kept home API healthcheck visible.
 
 ### Phase 3: Extraction flow (core user scenario)
 - [ ] Build `/extract` page with CV + IFU input form.

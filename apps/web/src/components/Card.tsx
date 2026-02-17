@@ -7,9 +7,9 @@ type CardProps = {
 
 export function Card({ title, children }: CardProps) {
   return (
-    <section>
-      <h2>{title}</h2>
-      <div>{children}</div>
+    <section className="card">
+      <h2 className="card-title">{title}</h2>
+      <div className="card-content">{children}</div>
     </section>
   );
 }

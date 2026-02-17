@@ -1,0 +1,126 @@
+:root {
+  font-family: "Segoe UI", "Inter", system-ui, -apple-system, sans-serif;
+  line-height: 1.5;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+}
+
+#root {
+  min-height: 100vh;
+}
+
+.app-shell {
+  width: min(1080px, 100% - 3rem);
+  margin: 0 auto;
+  padding: 2rem 0 3rem;
+}
+
+.workspace-header {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.workspace-title {
+  margin: 0;
+  font-size: clamp(1.4rem, 2vw, 2rem);
+}
+
+.workspace-subtitle {
+  margin: 0.25rem 0 0;
+}
+
+.workspace-tag {
+  margin: 0;
+  padding: 0.35rem 0.7rem;
+  border: 1px solid;
+  border-radius: 999px;
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+
+.nav {
+  margin-bottom: 1.25rem;
+}
+
+.nav-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.55rem;
+}
+
+.nav-link {
+  display: inline-block;
+  text-decoration: none;
+  padding: 0.45rem 0.8rem;
+  border: 1px solid;
+  border-radius: 0.65rem;
+  font-weight: 500;
+}
+
+.nav-link-active {
+  font-weight: 700;
+  text-decoration: underline;
+  text-underline-offset: 0.15rem;
+}
+
+.content {
+  display: grid;
+  gap: 1rem;
+}
+
+.page-grid {
+  display: grid;
+  gap: 1rem;
+}
+
+.card {
+  border: 1px solid;
+  border-radius: 0.9rem;
+  padding: 1rem 1rem 1.1rem;
+}
+
+.card-title {
+  margin: 0 0 0.55rem;
+  font-size: 1.06rem;
+}
+
+.card-content {
+  display: grid;
+  gap: 0.4rem;
+}
+
+.card-content p {
+  margin: 0;
+}
+
+.status-block {
+  border-left: 3px solid;
+  padding-left: 0.7rem;
+  font-weight: 500;
+}
+
+.status-loading,
+.status-success,
+.status-error {
+  margin: 0;
+}
+
+@media (max-width: 640px) {
+  .app-shell {
+    width: min(1080px, 100% - 1.5rem);
+    padding-top: 1.25rem;
+  }
+}

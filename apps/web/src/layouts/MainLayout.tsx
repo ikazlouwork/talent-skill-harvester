@@ -3,13 +3,16 @@ import { Navigation } from "../components/Navigation";
 
 export function MainLayout() {
   return (
-    <main>
-      <header>
-        <h1>Talent Skill Harvester</h1>
-        <p>Main workspace</p>
+    <main className="app-shell">
+      <header className="workspace-header">
+        <div>
+          <h1 className="workspace-title">Talent Skill Harvester</h1>
+          <p className="workspace-subtitle">Main workspace</p>
+        </div>
+        <p className="workspace-tag">Phase 2</p>
       </header>
       <Navigation />
-      <section>
+      <section className="content">
         <Outlet />
       </section>
     </main>
