@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import { Card } from "../components/Card";
 import { StatusBlock } from "../components/StatusBlock";
 import { webConfig } from "../config";
@@ -50,12 +51,46 @@ export function HomePage() {
     : null;
 
   return (
-    <div className="page-grid">
-      <Card title="Project status">
-        <p>Phase 2 frontend skeleton is active.</p>
-        <p>Configured API base URL: {webConfig.apiBaseUrl}</p>
-        <p>Use the navigation above to open extract, results, and admin sections.</p>
+    <div className="page-grid home-grid">
+      <Card title="Talent Skill Harvester">
+        <div className="home-hero">
+          <p className="home-lead">
+            Extract skills from CV + IFU and review results in a structured format.
+          </p>
+          <p className="home-muted">Configured API base URL: {webConfig.apiBaseUrl}</p>
+        </div>
+
+        <div className="home-action-row">
+          <Link className="home-action-link" to="/extract">
+            Start extraction
+          </Link>
+          <Link className="home-action-link home-action-link-secondary" to="/results">
+            Open latest results
+          </Link>
+        </div>
       </Card>
+
+      <Card title="Workflow progress">
+        <ul className="home-progress-list">
+          <li>
+            <span className="home-progress-badge home-progress-badge-done">Done</span>
+            <span>Phase 1: Project bootstrap</span>
+          </li>
+          <li>
+            <span className="home-progress-badge home-progress-badge-done">Done</span>
+            <span>Phase 2: Frontend skeleton and routing</span>
+          </li>
+          <li>
+            <span className="home-progress-badge home-progress-badge-done">Done</span>
+            <span>Phase 3: Extraction flow (core user scenario)</span>
+          </li>
+          <li>
+            <span className="home-progress-badge">Next</span>
+            <span>Phase 4+: Skills endpoints, logs, and persistence</span>
+          </li>
+        </ul>
+      </Card>
+
       <Card title="API healthcheck">
         <StatusBlock
           loadingText="Healthcheck: loading..."
