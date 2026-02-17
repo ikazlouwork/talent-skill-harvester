@@ -1,0 +1,21 @@
+{
+  "name": "talent-skill-harvester",
+  "private": true,
+  "version": "0.1.0",
+  "workspaces": [
+    "apps/web",
+    "packages/*"
+  ],
+  "scripts": {
+    "dev": "concurrently \"dotnet watch --project apps/api/TalentSkillHarvester.Api.csproj --launch-profile http\" \"npm run dev --workspace @talent-skill-harvester/web\"",
+    "dev:api": "dotnet watch --project apps/api/TalentSkillHarvester.Api.csproj --launch-profile http",
+    "dev:web": "npm run dev --workspace @talent-skill-harvester/web",
+    "build": "dotnet build apps/api/TalentSkillHarvester.Api.csproj && npm run build --workspace @talent-skill-harvester/web && npm run build --workspace @talent-skill-harvester/shared",
+    "test": "dotnet test apps/api/TalentSkillHarvester.Api.csproj && npm run test --workspace @talent-skill-harvester/web && npm run test --workspace @talent-skill-harvester/shared",
+    "typecheck": "npm run typecheck --workspace @talent-skill-harvester/web && npm run typecheck --workspace @talent-skill-harvester/shared"
+  },
+  "devDependencies": {
+    "concurrently": "^9.1.2",
+    "typescript": "^5.7.3"
+  }
+}
