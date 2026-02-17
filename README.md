@@ -141,18 +141,19 @@ The final app will include multiple pages, reusable components, routing, and dif
 - [x] Add migrations and optional seed data.
 - [x] Connect API endpoints to persistence layer.
 - [x] Verify basic CRUD and extraction history retention.
-
-Completed in this phase:
-- Added SQLite persistence with EF Core (`AppDbContext`, entities, and initial migration).
-- Implemented repository-based data access for skills and extraction logs.
-- Replaced in-memory API storage with persistence-backed store/service wiring.
-- Added DB seeding for initial skills and validated extraction log retention after API restart.
+- [x] Added SQLite persistence with EF Core (`AppDbContext`, entities, and initial migration).
+- [x] Implemented repository-based data access for skills and extraction logs.
+- [x] Replaced in-memory API storage with persistence-backed store/service wiring.
+- [x] Added DB seeding for initial skills and validated extraction log retention after API restart.
 
 ### Phase 6: Admin area
-- [ ] Build `/admin` dashboard shell with navigation to admin sections.
-- [ ] Build `/admin/skills` page for catalog management (list/create/edit).
-- [ ] Build `/admin/logs` page for extraction/request logs review.
-- [ ] Add simple validation and error handling in admin workflows.
+- [x] Build `/admin` dashboard shell with navigation to admin sections.
+- [x] Build `/admin/skills` page for catalog management (list/create/edit).
+- [x] Build `/admin/logs` page for extraction/request logs review.
+- [x] Add simple validation and error handling in admin workflows.
+- [x] Implemented Admin dashboard quick links and Phase 6 status summary.
+- [x] Implemented admin skills workflows with API integration (`GET/POST/PATCH`), form validation, and status feedback.
+- [x] Implemented admin extraction logs review with API integration (`GET /api/extractions`) and loading/empty/error states.
 
 ### Phase 7: Quality and delivery
 - [ ] Add tests for core API and critical UI flow.
