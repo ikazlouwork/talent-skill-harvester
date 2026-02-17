@@ -1,3 +1,4 @@
+﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.5.2.0
@@ -8,16 +9,44 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "api", "api", "{BC2D172B-13B
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TalentSkillHarvester.Api", "apps\api\TalentSkillHarvester.Api.csproj", "{C11D46BA-759D-B483-643B-318508ECE18C}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{858C69E3-D23F-514B-EBEF-81CDB591EF58}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TalentSkillHarvester.Api.Tests", "apps\api\tests\TalentSkillHarvester.Api.Tests\TalentSkillHarvester.Api.Tests.csproj", "{16BFC9DB-4537-4CD1-8D39-3466131CAC1C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
+		Debug|x64 = Debug|x64
+		Debug|x86 = Debug|x86
 		Release|Any CPU = Release|Any CPU
+		Release|x64 = Release|x64
+		Release|x86 = Release|x86
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{C11D46BA-759D-B483-643B-318508ECE18C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{C11D46BA-759D-B483-643B-318508ECE18C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C11D46BA-759D-B483-643B-318508ECE18C}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{C11D46BA-759D-B483-643B-318508ECE18C}.Debug|x64.Build.0 = Debug|Any CPU
+		{C11D46BA-759D-B483-643B-318508ECE18C}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{C11D46BA-759D-B483-643B-318508ECE18C}.Debug|x86.Build.0 = Debug|Any CPU
 		{C11D46BA-759D-B483-643B-318508ECE18C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C11D46BA-759D-B483-643B-318508ECE18C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C11D46BA-759D-B483-643B-318508ECE18C}.Release|x64.ActiveCfg = Release|Any CPU
+		{C11D46BA-759D-B483-643B-318508ECE18C}.Release|x64.Build.0 = Release|Any CPU
+		{C11D46BA-759D-B483-643B-318508ECE18C}.Release|x86.ActiveCfg = Release|Any CPU
+		{C11D46BA-759D-B483-643B-318508ECE18C}.Release|x86.Build.0 = Release|Any CPU
+		{16BFC9DB-4537-4CD1-8D39-3466131CAC1C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{16BFC9DB-4537-4CD1-8D39-3466131CAC1C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{16BFC9DB-4537-4CD1-8D39-3466131CAC1C}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{16BFC9DB-4537-4CD1-8D39-3466131CAC1C}.Debug|x64.Build.0 = Debug|Any CPU
+		{16BFC9DB-4537-4CD1-8D39-3466131CAC1C}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{16BFC9DB-4537-4CD1-8D39-3466131CAC1C}.Debug|x86.Build.0 = Debug|Any CPU
+		{16BFC9DB-4537-4CD1-8D39-3466131CAC1C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{16BFC9DB-4537-4CD1-8D39-3466131CAC1C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{16BFC9DB-4537-4CD1-8D39-3466131CAC1C}.Release|x64.ActiveCfg = Release|Any CPU
+		{16BFC9DB-4537-4CD1-8D39-3466131CAC1C}.Release|x64.Build.0 = Release|Any CPU
+		{16BFC9DB-4537-4CD1-8D39-3466131CAC1C}.Release|x86.ActiveCfg = Release|Any CPU
+		{16BFC9DB-4537-4CD1-8D39-3466131CAC1C}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -25,6 +54,8 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{BC2D172B-13BC-136C-CDB1-4B1A687208C4} = {1787FE1D-075E-9E68-7218-25F1BD1BBEAB}
 		{C11D46BA-759D-B483-643B-318508ECE18C} = {BC2D172B-13BC-136C-CDB1-4B1A687208C4}
+		{858C69E3-D23F-514B-EBEF-81CDB591EF58} = {BC2D172B-13BC-136C-CDB1-4B1A687208C4}
+		{16BFC9DB-4537-4CD1-8D39-3466131CAC1C} = {858C69E3-D23F-514B-EBEF-81CDB591EF58}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {6E380689-134D-45A0-80A6-09540EAE619D}
