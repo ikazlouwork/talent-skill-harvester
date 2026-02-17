@@ -216,10 +216,60 @@ body {
   box-shadow: var(--shadow-soft);
 }
 
+.card-top-content {
+  margin: 0 0 0.8rem;
+}
+
 .card-title {
   margin: 0 0 0.65rem;
   font-size: 1.08rem;
   letter-spacing: -0.01em;
+}
+
+.workflow-progress-ring {
+  display: grid;
+  justify-items: center;
+  gap: 0.45rem;
+}
+
+.workflow-progress-ring-svg {
+  width: 120px;
+  height: 120px;
+}
+
+.workflow-progress-ring-track,
+.workflow-progress-ring-value {
+  fill: none;
+  stroke-width: 10;
+}
+
+.workflow-progress-ring-track {
+  stroke: var(--border);
+}
+
+.workflow-progress-ring-value {
+  stroke: var(--accent);
+  stroke-linecap: round;
+  transform: rotate(-90deg);
+  transform-origin: 50% 50%;
+  transition: stroke-dashoffset 0.3s ease;
+}
+
+.workflow-progress-ring-label {
+  display: grid;
+  justify-items: center;
+  gap: 0.05rem;
+}
+
+.workflow-progress-ring-label strong {
+  font-size: 1.25rem;
+  line-height: 1;
+  color: var(--accent-strong);
+}
+
+.workflow-progress-ring-label span {
+  font-size: 0.85rem;
+  color: var(--text-muted);
 }
 
 .card-content {

@@ -13,6 +13,12 @@ type HealthResponse = {
 export function HomePage() {
   const [health, setHealth] = useState<HealthResponse | null>(null);
   const [error, setError] = useState<string | null>(null);
+  const totalPhases = 10;
+  const completedPhases = 5;
+  const progressPercent = Math.round((completedPhases / totalPhases) * 100);
+  const ringRadius = 46;
+  const ringCircumference = 2 * Math.PI * ringRadius;
+  const ringOffset = ringCircumference * (1 - progressPercent / 100);
 
   useEffect(() => {
     const controller = new AbortController();
@@ -81,7 +87,30 @@ export function HomePage() {
       </div>
 
       <div className="home-side-column">
-        <Card title="Workflow progress">
+        <Card
+          title="Workflow progress"
+          topContent={
+            <div className="workflow-progress-ring" aria-label={`Completed ${completedPhases} of ${totalPhases} phases`}>
+              <svg className="workflow-progress-ring-svg" viewBox="0 0 120 120" role="img" aria-hidden="true">
+                <circle className="workflow-progress-ring-track" cx="60" cy="60" r={ringRadius} />
+                <circle
+                  className="workflow-progress-ring-value"
+                  cx="60"
+                  cy="60"
+                  r={ringRadius}
+                  strokeDasharray={`${ringCircumference} ${ringCircumference}`}
+                  strokeDashoffset={ringOffset}
+                />
+              </svg>
+              <div className="workflow-progress-ring-label">
+                <strong>{progressPercent}%</strong>
+                <span>
+                  {completedPhases}/{totalPhases} phases
+                </span>
+              </div>
+            </div>
+          }
+        >
           <ul className="home-progress-list">
             <li>
               <span className="home-progress-badge home-progress-badge-done">Done</span>
@@ -100,8 +129,12 @@ export function HomePage() {
               <span>Phase 4: API implementation</span>
             </li>
             <li>
-              <span className="home-progress-badge">Next</span>
+              <span className="home-progress-badge home-progress-badge-done">Done</span>
               <span>Phase 5: Database and persistence (SQLite)</span>
+            </li>
+            <li>
+              <span className="home-progress-badge">Next</span>
+              <span>Phase 6: Admin area</span>
             </li>
           </ul>
         </Card>
