@@ -90,6 +90,14 @@ The final app will include multiple pages, reusable components, routing, and dif
 - Uses fixed URL: `http://localhost:4000`
 - Uses environment: `ASPNETCORE_ENVIRONMENT=Development`
 
+### SQLite persistence
+- API uses SQLite with EF Core migrations.
+- Default DB file path: `apps/api/App_Data/talent-skill-harvester.db`
+- Override DB file location with env var: `SQLITE_DB_PATH`
+- Apply/create migrations manually (optional):
+	- `dotnet ef migrations add <MigrationName> --project apps/api/TalentSkillHarvester.Api.csproj --startup-project apps/api/TalentSkillHarvester.Api.csproj --output-dir src/Persistence/Migrations`
+	- `dotnet ef database update --project apps/api/TalentSkillHarvester.Api.csproj --startup-project apps/api/TalentSkillHarvester.Api.csproj`
+
 ## Plan (checklist)
 
 ### Phase 1: Project bootstrap
@@ -121,13 +129,13 @@ The final app will include multiple pages, reusable components, routing, and dif
 - [x] Implement `POST /api/extract` with mock extractor service.
 - [x] Implement skills endpoints: `GET /api/skills`, `POST /api/skills`, `PATCH /api/skills/:id`.
 - [x] Implement extraction logs endpoint: `GET /api/extractions`.
-- [x] UI polish aligned with Phase 4: updated Workflow progress status, improved action/focus states, and refined Results empty-state CTA.
+- [x] UI polish: updated Workflow progress status, improved action/focus states, and refined Results empty-state CTA.
 
 ### Phase 5: Database and persistence (SQLite)
-- [ ] Define SQLite schema for skills and extraction logs.
-- [ ] Add migrations and optional seed data.
-- [ ] Connect API endpoints to persistence layer.
-- [ ] Verify basic CRUD and extraction history retention.
+- [x] Define SQLite schema for skills and extraction logs.
+- [x] Add migrations and optional seed data.
+- [x] Connect API endpoints to persistence layer.
+- [x] Verify basic CRUD and extraction history retention.
 
 ### Phase 6: Admin area
 - [ ] Build `/admin` dashboard shell with navigation to admin sections.

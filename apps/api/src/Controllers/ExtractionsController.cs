@@ -6,12 +6,12 @@ namespace TalentSkillHarvester.Api.Controllers;
 
 [ApiController]
 [Route("api/extractions")]
-public sealed class ExtractionsController(InMemoryApiStore store) : ControllerBase
+public sealed class ExtractionsController(IApiStore store) : ControllerBase
 {
     [HttpGet]
     [ProducesResponseType(typeof(IReadOnlyList<ExtractionLogItem>), StatusCodes.Status200OK)]
-    public ActionResult<IReadOnlyList<ExtractionLogItem>> GetExtractions()
+    public async Task<ActionResult<IReadOnlyList<ExtractionLogItem>>> GetExtractions(CancellationToken cancellationToken)
     {
-        return Ok(store.GetExtractionLogs());
+        return Ok(await store.GetExtractionLogsAsync(cancellationToken));
     }
 }
