@@ -53,11 +53,32 @@
 - **Accepted / changed:** Accepted implementation as Phase 4 target; updated Phase 4 checklist in README.
 - **Why:** Completes declared API scope before moving to SQLite persistence in Phase 5.
 
+### Step 5 — UI polish in small PR commits
+- **Goal:** Keep PR history with small, focused UI improvements.
+- **Context provided:** Request to include lightweight UI changes in each PR and split them into separate commits.
+- **Prompt used:** Apply incremental UI polish and commit each change separately.
+- **Result summary:** Added and committed:
+	- improved interactive hover/focus-visible states for actions (`ui: refine interactive states on home actions`)
+	- improved Results empty-state CTA styling/text (`ui: improve results empty state call-to-action`)
+- **Accepted / changed:** Accepted both changes as minimal UI-only refinements.
+- **Why:** Improves UX consistency while keeping commit history readable.
+
+### Step 6 — Backend unit tests
+- **Goal:** Add unit tests for backend controller logic.
+- **Context provided:** Existing API endpoints in Phase 4 and no existing test project.
+- **Prompt used:** Create xUnit test project, add controller tests, and run `dotnet test`.
+- **Result summary:** Added test project under `apps/api/tests` with tests for `ExtractionController` and `SkillsController`; updated solution and scripts to run tests from solution.
+- **Accepted / changed:** Accepted test coverage for core controller behaviors (validation, success, conflict/not-found).
+- **Why:** Establishes baseline backend quality gates before Phase 5 persistence work.
+
 ## Accepted/Changed and Why
 - What was accepted directly:
 	- Generated API/controller scaffolding, route wiring, and baseline validation patterns.
+	- Small UI state polish changes with separate `ui:` commits.
+	- xUnit project scaffold and controller-focused unit test structure.
 - What was refactored manually:
 	- Kept implementation in-memory only for Phase 4 to avoid mixing with Phase 5 DB scope.
+	- Excluded `apps/api/tests/**` from API project compile items to prevent duplicate/invalid compilation during solution test run.
 - What was rejected and why:
 	- Extra UI/admin features beyond scope were deferred to Phase 6.
 
@@ -68,5 +89,7 @@
 	- Broad prompts that mixed API, DB, and UI in one request.
 - Prompting patterns that produced best results:
 	- First define architecture/checklist, then generate feature-by-feature, then run smoke checks.
+	- Keep one prompt = one narrow change + one focused commit message.
 - Recommendations for future assignments:
 	- Keep each prompt scoped to one phase and include acceptance criteria in bullet form.
+	- Maintain at least one small `ui:` commit in each PR for steady UX improvements.
