@@ -12,10 +12,12 @@ builder.Services.AddCors(options =>
         policy.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod();
     });
 });
+builder.Services.AddControllers();
 
 var app = builder.Build();
 
 app.UseCors();
+app.MapControllers();
 
 app.MapGet("/api/health", Ok<HealthResponse> () =>
 {
