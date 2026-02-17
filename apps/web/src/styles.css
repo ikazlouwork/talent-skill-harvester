@@ -370,6 +370,26 @@ body {
   color: #7a3e00;
 }
 
+.inline-action-link {
+  display: inline-block;
+  text-decoration: none;
+  border-radius: 0.75rem;
+  padding: 0.44rem 0.8rem;
+  font-weight: 700;
+  color: #173058;
+  background: #eaf1ff;
+  border: 1px solid #c8d7ef;
+}
+
+.inline-action-link:hover {
+  background: #dfeaff;
+}
+
+.inline-action-link:focus-visible {
+  outline: 3px solid rgba(37, 99, 235, 0.22);
+  outline-offset: 2px;
+}
+
 @media (max-width: 640px) {
   .app-shell {
     width: min(1080px, 100% - 1.5rem);
