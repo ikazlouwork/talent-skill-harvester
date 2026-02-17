@@ -235,6 +235,21 @@ body {
   background: #eff5ff;
 }
 
+.status-block-loading {
+  border-left-color: #d4a106;
+  background: #fff8df;
+}
+
+.status-block-success {
+  border-left-color: var(--success);
+  background: #eaf9ef;
+}
+
+.status-block-error {
+  border-left-color: var(--danger);
+  background: #fdecec;
+}
+
 .status-loading,
 .status-success,
 .status-error {
@@ -242,7 +257,7 @@ body {
 }
 
 .status-loading {
-  color: #1e3a8a;
+  color: #8a5a00;
 }
 
 .status-success {
