@@ -85,8 +85,12 @@ export function HomePage() {
             <span>Phase 3: Extraction flow (core user scenario)</span>
           </li>
           <li>
+            <span className="home-progress-badge home-progress-badge-done">Done</span>
+            <span>Phase 4: API implementation</span>
+          </li>
+          <li>
             <span className="home-progress-badge">Next</span>
-            <span>Phase 4+: Skills endpoints, logs, and persistence</span>
+            <span>Phase 5: Database and persistence (SQLite)</span>
           </li>
         </ul>
       </Card>

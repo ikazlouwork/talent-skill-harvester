@@ -118,6 +118,12 @@ body {
 
 .home-grid .card:nth-child(1) {
   grid-column: span 7;
+  align-self: start;
+}
+
+.home-grid .card:nth-child(1) .card-content {
+  display: flex;
+  flex-direction: column;
 }
 
 .home-grid .card:nth-child(2) {
@@ -149,7 +155,7 @@ body {
   display: flex;
   flex-wrap: wrap;
   gap: 0.6rem;
-  margin-top: 0.3rem;
+  margin-top: auto;
 }
 
 .home-action-link {
@@ -160,6 +166,12 @@ body {
   color: #ffffff;
   background: linear-gradient(135deg, var(--accent), var(--accent-strong));
   box-shadow: 0 8px 16px rgba(37, 99, 235, 0.24);
+  transition: transform 0.12s ease, box-shadow 0.12s ease;
+}
+
+.home-action-link:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 10px 18px rgba(37, 99, 235, 0.3);
 }
 
 .home-action-link-secondary {
@@ -167,6 +179,12 @@ body {
   background: #eaf1ff;
   box-shadow: none;
   border: 1px solid #c8d7ef;
+}
+
+.home-action-link-secondary:hover {
+  transform: none;
+  box-shadow: none;
+  background: #dfeaff;
 }
 
 .home-progress-list {
@@ -321,6 +339,14 @@ body {
   box-shadow: none;
 }
 
+.nav-link:focus-visible,
+.home-action-link:focus-visible,
+.primary-button:focus-visible,
+.field-textarea:focus-visible {
+  outline: 3px solid rgba(37, 99, 235, 0.22);
+  outline-offset: 2px;
+}
+
 .skills-list,
 .warnings-list {
   margin: 0;
@@ -342,6 +368,26 @@ body {
 .warnings-list li {
   margin-bottom: 0.35rem;
   color: #7a3e00;
+}
+
+.inline-action-link {
+  display: inline-block;
+  text-decoration: none;
+  border-radius: 0.75rem;
+  padding: 0.44rem 0.8rem;
+  font-weight: 700;
+  color: #173058;
+  background: #eaf1ff;
+  border: 1px solid #c8d7ef;
+}
+
+.inline-action-link:hover {
+  background: #dfeaff;
+}
+
+.inline-action-link:focus-visible {
+  outline: 3px solid rgba(37, 99, 235, 0.22);
+  outline-offset: 2px;
 }
 
 @media (max-width: 640px) {

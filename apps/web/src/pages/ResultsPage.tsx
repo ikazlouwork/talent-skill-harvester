@@ -17,9 +17,11 @@ export function ResultsPage() {
             errorText={null}
             successText={null}
           />
-          <p>Run extraction first to view structured skills.</p>
+          <p>Run extraction first to view structured skills and confidence levels.</p>
           <p>
-            <Link to="/extract">Go to extraction form</Link>
+            <Link className="inline-action-link" to="/extract">
+              Go to extraction form
+            </Link>
           </p>
         </Card>
       </div>

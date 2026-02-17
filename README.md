@@ -113,14 +113,15 @@ The final app will include multiple pages, reusable components, routing, and dif
 - [x] Implement submit flow to `POST /api/extract`.
 - [x] Build `/results` page to show structured extracted skills.
 - [x] Add loading/error/empty states for extraction UX.
-- [x] UI polish: improved Home page visual dashboard and quick actions (`202a1f7`).
-- [x] UX polish: healthcheck status colors updated (success = green, loading = yellow, error = red) (`b0c8cc9`).
+- [x] UI polish: improved Home page visual dashboard and quick actions.
+- [x] UX polish: healthcheck status colors updated (success = green, loading = yellow, error = red).
 
 ### Phase 4: API implementation
 - [x] Implement `GET /api/health`.
 - [x] Implement `POST /api/extract` with mock extractor service.
-- [ ] Implement skills endpoints: `GET /api/skills`, `POST /api/skills`, `PATCH /api/skills/:id`.
-- [ ] Implement extraction logs endpoint: `GET /api/extractions`.
+- [x] Implement skills endpoints: `GET /api/skills`, `POST /api/skills`, `PATCH /api/skills/:id`.
+- [x] Implement extraction logs endpoint: `GET /api/extractions`.
+- [x] UI polish aligned with Phase 4: updated Workflow progress status, improved action/focus states, and refined Results empty-state CTA.
 
 ### Phase 5: Database and persistence (SQLite)
 - [ ] Define SQLite schema for skills and extraction logs.

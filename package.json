@@ -11,7 +11,7 @@
     "dev:api": "dotnet watch --project apps/api/TalentSkillHarvester.Api.csproj --launch-profile http",
     "dev:web": "npm run dev --workspace @talent-skill-harvester/web",
     "build": "dotnet build apps/api/TalentSkillHarvester.Api.csproj && npm run build --workspace @talent-skill-harvester/web && npm run build --workspace @talent-skill-harvester/shared",
-    "test": "dotnet test apps/api/TalentSkillHarvester.Api.csproj && npm run test --workspace @talent-skill-harvester/web && npm run test --workspace @talent-skill-harvester/shared",
+    "test": "dotnet test talent-skill-harvester.sln && npm run test --workspace @talent-skill-harvester/web && npm run test --workspace @talent-skill-harvester/shared",
     "typecheck": "npm run typecheck --workspace @talent-skill-harvester/web && npm run typecheck --workspace @talent-skill-harvester/shared"
   },
   "devDependencies": {
