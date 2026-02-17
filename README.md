@@ -142,6 +142,12 @@ The final app will include multiple pages, reusable components, routing, and dif
 - [x] Connect API endpoints to persistence layer.
 - [x] Verify basic CRUD and extraction history retention.
 
+Completed in this phase:
+- Added SQLite persistence with EF Core (`AppDbContext`, entities, and initial migration).
+- Implemented repository-based data access for skills and extraction logs.
+- Replaced in-memory API storage with persistence-backed store/service wiring.
+- Added DB seeding for initial skills and validated extraction log retention after API restart.
+
 ### Phase 6: Admin area
 - [ ] Build `/admin` dashboard shell with navigation to admin sections.
 - [ ] Build `/admin/skills` page for catalog management (list/create/edit).
