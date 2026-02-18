@@ -10,11 +10,26 @@ type HealthResponse = {
   env: "development" | "test" | "production";
 };
 
+type WorkflowPhase = {
+  name: string;
+  status: "done" | "next";
+};
+
+const workflowPhases: WorkflowPhase[] = [
+  { name: "Phase 1: Project bootstrap", status: "done" },
+  { name: "Phase 2: Frontend skeleton and routing", status: "done" },
+  { name: "Phase 3: Extraction flow (core user scenario)", status: "done" },
+  { name: "Phase 4: API implementation", status: "done" },
+  { name: "Phase 5: Database and persistence (SQLite)", status: "done" },
+  { name: "Phase 6: Admin area", status: "done" },
+  { name: "Phase 7: Quality and delivery", status: "next" }
+];
+
 export function HomePage() {
   const [health, setHealth] = useState<HealthResponse | null>(null);
   const [error, setError] = useState<string | null>(null);
-  const totalPhases = 10;
-  const completedPhases = 5;
+  const totalPhases = workflowPhases.length;
+  const completedPhases = workflowPhases.filter((phase) => phase.status === "done").length;
   const progressPercent = Math.round((completedPhases / totalPhases) * 100);
   const ringRadius = 46;
   const ringCircumference = 2 * Math.PI * ringRadius;
@@ -112,30 +127,20 @@ export function HomePage() {
           }
         >
           <ul className="home-progress-list">
-            <li>
-              <span className="home-progress-badge home-progress-badge-done">Done</span>
-              <span>Phase 1: Project bootstrap</span>
-            </li>
-            <li>
-              <span className="home-progress-badge home-progress-badge-done">Done</span>
-              <span>Phase 2: Frontend skeleton and routing</span>
-            </li>
-            <li>
-              <span className="home-progress-badge home-progress-badge-done">Done</span>
-              <span>Phase 3: Extraction flow (core user scenario)</span>
-            </li>
-            <li>
-              <span className="home-progress-badge home-progress-badge-done">Done</span>
-              <span>Phase 4: API implementation</span>
-            </li>
-            <li>
-              <span className="home-progress-badge home-progress-badge-done">Done</span>
-              <span>Phase 5: Database and persistence (SQLite)</span>
-            </li>
-            <li>
-              <span className="home-progress-badge">Next</span>
-              <span>Phase 6: Admin area</span>
-            </li>
+            {workflowPhases.map((phase) => (
+              <li key={phase.name}>
+                <span
+                  className={
+                    phase.status === "done"
+                      ? "home-progress-badge home-progress-badge-done"
+                      : "home-progress-badge"
+                  }
+                >
+                  {phase.status === "done" ? "Done" : "Next"}
+                </span>
+                <span>{phase.name}</span>
+              </li>
+            ))}
           </ul>
         </Card>
       </div>
